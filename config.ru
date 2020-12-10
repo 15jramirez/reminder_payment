@@ -1,8 +1,8 @@
 require './config/environment' #requires environment
 
-if ActiveRecord::Migrator.needs_migration? #reminder to run migrations
-  raise 'Migrations are pending. Run 'rake db:migrate'
-end
+if ActiveRecord::Base.connection.migration_context.needs_migration?
+    raise 'Migrations are pending. Run `rake db:migrate` to resolve the issue.'
+  end
 
 use Rack::MethodOverride #for later use of patch/delete routes
-runApplicationController #mounting main controller
+run ApplicationController #mounting main controller
