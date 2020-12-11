@@ -12,7 +12,7 @@ class ApplicationController < Sinatra::Base
     if logged_in
         @user = current_user
         #maybe put here all the instances of the post to the user
-        erb :'users/account'
+        redirect :'/account'
     else
         erb :'/homepage' 
     end

@@ -1,6 +1,8 @@
-<h1> Log in!</h1>
-    <form action='/account' method='POST'>
-        <label for="user_email_or_name">Enter your username or email:</label>
-        <input type="text" name="username" name="email">
+<h1> Please login to access your account</h1>
+    <form action='/login' method='POST'>
+        <label for="user_email_or_name">Enter your username</label><br>
+        <input type="text" name="username"><br><br>
+        <label for="password">Password</label><br>
+        <input type="password" name ="password"><br><br>
         <input type="submit" value="Log in!">
     </form>

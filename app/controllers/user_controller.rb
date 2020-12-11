@@ -1,16 +1,16 @@
 class UserController < ApplicationController
-    #create method
+    #create an account
     get '/signup' do 
-        erb :'/users/signup'
+        erb :'users/signup'
     end
 
-    post '/account' do 
-     if params[:username].empty? || params[:email].empty? || params[:password].empty?
-        redirect :'/error'
+    post '/signup' do 
+     if params[:username] == "" || params[:email] =="" || params[:password] ==""
+        erb :'users/error'
      else
         @user = User.create(username: params[:username], email: params[:email], password: params[:password])
         session[:user_id] = @user.id
-        redirect :'/users/account'
+        redirect :'/account'
      end
     end
 
@@ -19,16 +19,19 @@ class UserController < ApplicationController
     erb :'users/login'
     end
     
-    post '/account' do
-       user = User.find_by(params[:username])
-       user_email = User.find_by(params[:email])
-       binding.pry
-       if user | user_email && user.authenticate(params[:password])
-            session[:user_id] = user.id
-            reidrect :'/users/account'
+    post '/login' do
+        @user = User.find_by(:username => params[:username])
+       if @user && @user.authenticate(params[:password])
+            session[:user_id] = @user.id
+            redirect :'/account'
        else
-        redirect :'/error'
+         erb :'users/error'
        end
+    end
+    
+    get '/account' do 
+        @payments = Payment.all
+        erb :'users/show'
     end
 
     #logout
