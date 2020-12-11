@@ -5,6 +5,8 @@ class UserController < ApplicationController
     end
 
     post '/account' do 
+        binding.pry
+        user = User.create()
         #create an instance of user
             #going to save view create method
         #add session to user
