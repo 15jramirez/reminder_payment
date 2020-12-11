@@ -25,6 +25,7 @@ class UserController < ApplicationController
        binding.pry
        if user | user_email && user.authenticate(params[:password])
             session[:user_id] = user.id
+            reidrect :'/users/account'
        else
         redirect :'/error'
         #redirect to account
