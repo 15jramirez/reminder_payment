@@ -6,9 +6,8 @@ class UserController < ApplicationController
 
     post '/account' do 
         binding.pry
-        user = User.create()
         #create an instance of user
-            #going to save view create method
+        user = User.create(username: params[:username], email: params[:email], password: params[:password])
         #add session to user
         #redirect this to account? 
     end
