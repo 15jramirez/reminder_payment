@@ -1,15 +1,17 @@
 class UserController < ApplicationController
     #create method
     get '/signup' do 
-        erb :'users/signup'
+        erb :'/users/signup'
     end
 
     post '/account' do 
-        binding.pry
-        #create an instance of user
-        user = User.create(username: params[:username], email: params[:email], password: params[:password])
-        #add session to user
-        #redirect this to account? 
+     if params[:username].empty? || params[:email].empty? || params[:password].empty?
+        redirect :'/error'
+     else
+        @user = User.create(username: params[:username], email: params[:email], password: params[:password])
+        session[:user_id] = @user.id
+        redirect :'/users/account'
+     end
     end
 
     #login 
@@ -18,9 +20,15 @@ class UserController < ApplicationController
     end
     
     post '/account' do
-        #find by session of user
-        #raise an error if incorrect
+       user = User.find_by(params[:username])
+       user_email = User.find_by(params[:email])
+       binding.pry
+       if user | user_email && user.authenticate(params[:password])
+            session[:user_id] = user.id
+       else
+        redirect :'/error'
         #redirect to account
+       end
     end
 
     #logout
