@@ -23,6 +23,12 @@ class UserController < ApplicationController
         #redirect to account
     end
 
+    #logout
+    get '/logout' do 
+        session.clear
+        redirect '/'
+    end
+
     #bonus (if have time)
 
     get '/account/settings' do
