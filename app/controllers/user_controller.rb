@@ -28,7 +28,6 @@ class UserController < ApplicationController
             reidrect :'/users/account'
        else
         redirect :'/error'
-        #redirect to account
        end
     end
 
