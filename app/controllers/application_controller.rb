@@ -10,8 +10,6 @@ class ApplicationController < Sinatra::Base
    #homepage of app
    get '/' do 
     if logged_in
-        @user = current_user
-        #maybe put here all the instances of the post to the user
         redirect :'/account'
     else
         erb :'/homepage' 
@@ -25,7 +23,7 @@ class ApplicationController < Sinatra::Base
         end
 
         def current_user
-            User.find(session[:user_id])
+            @user = User.find(session[:user_id])
         end
         
     end
