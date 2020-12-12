@@ -1,7 +1,11 @@
 class UserController < ApplicationController
     #create an account
     get '/signup' do 
-        erb :'users/signup'
+        if logged_in
+            erb :'users/account'
+        else
+            erb :'users/signup'
+        end
     end
 
     post '/signup' do 
@@ -20,9 +24,9 @@ class UserController < ApplicationController
     end
     
     post '/login' do
-        user = User.find_by(:username => params[:username])
-       if user && user.authenticate(params[:password])
-            session[:user_id] = user.id
+        @user = User.find_by(:username => params[:username])
+       if @user && @user.authenticate(params[:password])
+            session[:user_id] = @user.id
             redirect :'/account'
        else
          erb :'users/error'
