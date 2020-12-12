@@ -10,8 +10,9 @@
 <h1> Welcome, <%= current_user.username %>!</h1>
 <a href="/account/payment/new">Create Payment</a>
 <a href = "/account/settings">Account Settings</a> <br>
+<ol>
    <% current_user.payments.each do |pay|%>
-    <a href="/account/<%= pay.id%>">hello</a>
+    <li><a href="/account/<%= pay.id%>"><%=pay.name %></a> Due on: <%= pay.due_date %> </li>
       <% end %>
-
+</ol>
 <a href="/logout"> Log out</a>
