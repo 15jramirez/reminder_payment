@@ -5,7 +5,7 @@ class UserController < ApplicationController
     end
 
     post '/signup' do 
-     if params[:username] == "" || params[:email] =="" || params[:password] ==""
+     if params[:username] == "" || params[:password] ==""
         erb :'users/error'
      else
         user = User.create(username: params[:username], email: params[:email], password: params[:password])
