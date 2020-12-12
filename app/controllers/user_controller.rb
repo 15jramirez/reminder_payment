@@ -20,7 +20,11 @@ class UserController < ApplicationController
 
     #login 
     get '/login' do
-    erb :'users/login'
+        if logged_in
+            erb :'users/account'
+        else
+           erb :'users/login'
+        end
     end
     
     post '/login' do
@@ -34,8 +38,11 @@ class UserController < ApplicationController
     end
     
     get '/account' do 
-        
-        erb :'users/account'
+        if logged_in
+            erb :'users/account'
+        else
+            redirect_if_not_logged_in
+        end
     end
 
     #logout
