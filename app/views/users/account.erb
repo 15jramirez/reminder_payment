@@ -1,0 +1,12 @@
+ #want to display all of there payments if possible with due date next to them
+    #they can click a payment to see more detials about it. will iterate over all of them!
+        #this will direct them to the payments view tag
+#bonus: settings page to edit their account
+#want them to add a payment
+<h1> Welcome, <%= current_user.username %>!</h1>
+<a href="/account/payment/new">Create Payment</a>
+<a href = "/account/settings">Account Settings</a> <br>
+   <% current_user.payments.all.map do |pay|%>
+    <a href="/account/<%= pay.id%>"> hello </a>
+      <% end %>
+<a href="/logout"> Log out</a>

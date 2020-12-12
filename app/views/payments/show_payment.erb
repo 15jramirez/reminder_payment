@@ -1,0 +1,10 @@
+<h1><%= @payment.name%></h1>
+    <h3> Description </h3>
+    <p><%=@payment.description%></p>
+    <p><%=@payment.amount%></p>
+   <a href ="/account"> Account</a>
+    <form method="post" action="/account/<%=@payment.id%>">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete">
+  </form>
+    
