@@ -15,7 +15,7 @@ class PaymentController < ApplicationController
             user_id: user.id
         )
         @payment.save
-        redirect "/account/#{payment.id}"
+        redirect "/account/#{@payment.id}"
     end
 
     get '/account' do 
@@ -25,11 +25,13 @@ class PaymentController < ApplicationController
     end
 
     get '/account/:id' do 
+        redirect_if_not_logged_in
         @payment = Payment.find_by(params[:id])
         erb :'payments/show_payment'
     end
 
     get '/account/:id/edit' do 
+        redirect_if_not_logged_in
         @payment = Payment.find_by(params[:id])
         erb :'payments/edit'
     end
