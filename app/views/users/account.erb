@@ -1,9 +1,6 @@
 #bonus: settings page to edit their account
-#creating assocations use: payment = Paymnet.new()<- this creates an instance what we want.
-                          #payment.user_id = current_user.id <- this will create the association with the payments created.
-                          #payment.save <- will save the new assocations
 <h1> Welcome, <%= current_user.username %>!</h1>
-<a href="/account/payment/new">Create Payment</a>
+<a href="/account/new_payment">Create Payment</a>
 <a href = "/account/settings">Account Settings</a> <br>
 <ol>
    <% current_user.payments.each do |pay|%>
