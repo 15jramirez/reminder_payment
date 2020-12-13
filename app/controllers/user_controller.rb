@@ -38,17 +38,14 @@ class UserController < ApplicationController
     end
     
     get '/account' do 
-        if logged_in
+        redirect_if_not_logged_in
             erb :'users/account'
-        else
-            redirect_if_not_logged_in
-        end
     end
 
     #logout
     get '/logout' do 
         session.clear
-        redirect '/'
+        redirect_if_not_logged_in
     end
 
     #bonus (if have time)
