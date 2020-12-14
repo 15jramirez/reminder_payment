@@ -2,7 +2,7 @@ class UserController < ApplicationController
     #create an account
     get '/signup' do 
         if logged_in
-            erb :'users/account'
+            erb :'payments/account'
         else
             erb :'users/signup'
         end
@@ -12,8 +12,8 @@ class UserController < ApplicationController
      if params[:username] == "" || params[:password] ==""
         erb :'users/error'
      else
-        new_user = User.create(params[:user])
-        session[:user_id] = new_user.id
+        new_account = User.create(username: params[:username], password: params[:password])
+        session[:user_id] = new_account.id
         redirect :'/account'
      end
     end
@@ -21,7 +21,7 @@ class UserController < ApplicationController
     #login 
     get '/login' do
         if logged_in
-            erb :'users/account'
+            erb :'payments/account'
         else
            erb :'users/login'
         end
@@ -29,17 +29,12 @@ class UserController < ApplicationController
     
     post '/login' do
         user = User.find_by(:username => params[:username])
-       if user && user.authenticate(params[:username][:password])
+       if user && user.authenticate(params[:password])
             session[:user_id] = user.id
             redirect :'/account'
        else
          erb :'users/error'
        end
-    end
-    
-    get '/account' do 
-        redirect_if_not_logged_in
-            erb :'users/account'
     end
 
     #logout
@@ -47,24 +42,5 @@ class UserController < ApplicationController
         session.clear
         redirect_if_not_logged_in
     end
-
-    #bonus (if have time)
-
-    get '/account/settings' do
-        #here will show users their email, password, and username
-        #at bottom given option to edit account
-        # erb :'users/settings'
-    end
-
-    get '/account/settings/edit' do 
-        #this will allow to edit the page
-        # erb :'users/settings'
-    end
-
-    # PATCH '/account/settings/' do 
-    #     look up on how to edit a user account
-    #     redirect to '/account/settings'
-        
-    # end
 
 end

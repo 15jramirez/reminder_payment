@@ -1,14 +1,12 @@
-<form action="/account/<%=@payment.id%>" method="POST">
-<label for="name_of_payment">Name:</label>
-    <input type="text" name="name" value="<%=@payment.name%>"><br><br>
-    <label for="amount"> Amount:</label>
-    <input type="number" min="1" step="any" name="amount" value="<%=@payment.amount%>">
-    <label for="due">Due Date: </label>
-    <input type="date" name="due_date" value="<%=@payment.due_date%>"><br><br>
-    <p><b>Description:</b><br>
-    <textarea rows="4" cols="50" name="description" value="<%=@payment.description%>">></textarea></p>
-    <br><br>
-  <input id="hidden" type="hidden" name="_method" value="PATCH" >
-  <input type="submit" value="Done">
+<form action="/account/<%=@payment.id%>" method='POST'>
+  <input type="hidden" name="_method" value="patch">
+    <label for="name">Name:</label>
+        <input type="text" name="name" value="<%= @payment.name %>">
+    <label for="amount">Amount:</label>
+        <input type="text" name="amount" value="<%= @payment.amount %>">
+    <label for="due_date">Due by: </label>
+        <input type="date" name="due_date" value="<%= @payment.due_date%>">
+    <label for="description">Description</label>
+        <textarea rows="4" cols ="50" name="description" value ="<%= @payment.description %>"></textarea>
+    <input type="submit" value="Update">
 </form>
-

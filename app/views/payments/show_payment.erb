@@ -1,12 +1,12 @@
+<h1><%= @payment.name %></h1>
+<p>Description:<%=@payment.description%></p>
+<p>Amount:<%=@payment.amount%></p>
+<p>Due by:<%=@payment.due_date%></p>
+<a href ="/account"> Account</a>
+<a href ="/account/<%= @payment.id %>/edit">Edit </a>
 
-<h1><%= @payment.name%></h1>
-    <p>Description:<%=@payment.description%></p>
-    <p>Amount:<%=@payment.amount%></p>
-    <p>Due by:<%=@payment.due_date%></p>
-    <a href ="/account"> Account</a>
-    <a href ="/account/:id/edit">Edit </a>
-    <form method='Post' action="/account/<%=@payment.id%>">
-    <input id="hidden" type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete">
-  </form>
+<form method="post" action="/account/<%=@payment.id%>">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete">
+</form>
     

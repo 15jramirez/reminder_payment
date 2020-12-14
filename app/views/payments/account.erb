@@ -1,7 +1,6 @@
-#bonus: settings page to edit their account
 <h1> Welcome, <%= current_user.username %>!</h1>
-<a href="/account/new_payment">Create Payment</a>
-<a href = "/account/settings">Account Settings</a> <br>
+<a href="/account/new">Create Payment</a>
+<h2> Here are all of your payments </h2>
 <ol>
    <% current_user.payments.each do |pay|%>
     <li><a href="/account/<%= pay.id%>"><%=pay.name %></a> Due on: <%= pay.due_date %> </li>
