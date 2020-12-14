@@ -35,7 +35,9 @@ class PaymentController < ApplicationController
     get '/account/:id/edit' do 
         redirect_if_not_logged_in
         @payment = Payment.find_by_id(params[:id])
-        erb :'payments/edit'
+        if @payment.user_id == current_user.id
+            erb :'payments/edit'
+        end
     end
 
     patch '/account/:id' do 
