@@ -2,7 +2,7 @@ class CreatePayments < ActiveRecord::Migration
   def change
     create_table :payments do |t|
       t.string :name
-      t.decmial  :amount
+      t.float  :amount
       t.date :due_date
       t.text :description
       t.integer :user_id
