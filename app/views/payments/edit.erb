@@ -7,6 +7,6 @@
     <label for="due_date">Due by: </label>
         <input type="date" name="due_date" value="<%= @payment.due_date%>">
     <label for="description">Description</label>
-        <textarea rows="4" cols ="50" name="description" value ="<%= @payment.description %>"></textarea>
+        <textarea rows="4" cols ="50" name="description" value="<%= @payment.description %>"><%= @payment.description %></textarea>
     <input type="submit" value="Update">
 </form>

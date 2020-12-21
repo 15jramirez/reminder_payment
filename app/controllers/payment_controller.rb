@@ -42,6 +42,7 @@ class PaymentController < ApplicationController
 
     patch '/account/:id' do 
         @payment = Payment.find_by_id(params[:id])
+        binding.pry
         @payment.update(
             name: params[:name],
             amount: params[:amount],
